@@ -22,7 +22,7 @@ screens = [
                 widget.Sep(foreground=catppuccin["foreground"]),
                 widget.Systray(),
                 widget.Wallpaper(
-                    directory="~/Pictures/catppuccin/wallpapers/mandelbrot/",
+                    directory="~/wallpaper",
                     random_selection=True,
                     label = "",
                 ),
