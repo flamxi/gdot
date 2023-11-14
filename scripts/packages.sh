@@ -1,0 +1,3 @@
+packagesApt=(
+  "zsh",
+)

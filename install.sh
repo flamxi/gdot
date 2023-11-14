@@ -38,6 +38,7 @@ source scripts/config-folder.sh
 # source scripts/init-pywal.sh
 source scripts/qtile-dotfiles.sh
 # source scripts/bashrc.sh
+source scripts/install-zsh.sh
 
 echo ""
 

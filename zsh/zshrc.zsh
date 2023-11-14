@@ -1,15 +1,15 @@
 #!/bin/zsh
 # Vars
+script="${(%):-%N}"
+script_dir=`dirname "$script"`
+
 	HISTFILE=~/.zsh_history
 	SAVEHIST=1000 
 	setopt inc_append_history # To save every command before it is executed 
 	setopt share_history # setopt inc_append_history
-  	ZSH_PATH=~/repos/flamxi/dotfiles/zsh
-
+  	ZSH_PATH=$script_dir
   autoload bashcompinit
   bashcompinit
-script="${(%):-%N}"
-script_dir=`dirname "$script"`
 
 # Aliases
 #	alias v="vim -p"
