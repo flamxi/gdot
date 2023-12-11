@@ -27,6 +27,17 @@ screens = [
                     label = "",
                 ),
                 widget.Sep(foreground=catppuccin["foreground"]),
+widget.DF(
+                 update_interval = 60,
+                 foreground = catppuccin["blue"],
+                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
+                 partition = '/',
+                 format = '{uf}{m} free',
+                 fmt = '󰋊 Disk: {}',
+                 visible_on_warn = False,
+                 ),
+
+                widget.Sep(foreground=catppuccin["foreground"]),
                 widget.Backlight(
                     brightness_file="/sys/class/backlight/intel_backlight/brightness",
                     max_brightness_file="/sys/class/backlight/intel_backlight/max_brightness",

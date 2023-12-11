@@ -56,8 +56,8 @@ keys = [
 
      # Screen
     # Key([], 'F7', lazy.spawn('xset dpms force off')),
-    # Key([], 'XF86MonBrightnessUp',   lazy.function(backlight('inc'))),
-    # Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec'))),
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn("sudo brightnessctl -q s +20%")),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn("sudo brightnessctl -q s 20%-")),
 
     # Audio
     Key([], 'XF86AudioMute', lazy.spawn('ponymix toggle')),
@@ -66,4 +66,5 @@ keys = [
     # Key([], 'XF86AudioPlay', lazy.spawn(music_cmd + 'PlayPause')),
     # Key([], 'XF86AudioNext', lazy.function(next_prev('Next'))),
     # Key([], 'XF86AudioPrev', lazy.function(next_prev('Previous'))),
+    Key([mod, "control"], "Return", lazy.spawn("rofi -show drun"), desc="Launch Rofi"),
 ]

@@ -123,7 +123,7 @@ multiplier = 3
 [window]
 decorations = "Full"
 dynamic_title = true
-opacity = 1.0
+opacity = 0.7
 title = "izanami"
 
 [window.dimensions]

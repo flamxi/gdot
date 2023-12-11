@@ -2,11 +2,12 @@ from libqtile.config import Group, Match
     
 from .globals import terminal, browser
 
-group_indexes = "12345"
+group_indexes = "123456"
 
 groups = [
     Group("", layout="monadtall", spawn=terminal),
     Group("", layout="monadtall", spawn=terminal),
+    Group("󰢹", layout="monadtall", spawn=["teamviewer"]),
     Group("", 
           layout="monadtall", 
           spawn=browser, 
@@ -23,7 +24,7 @@ groups = [
         ],
     ),
     Group("", 
-          layout="max", 
+          layout="monadtall", 
           spawn="spotify", 
           matches=[Match(wm_class=["spotify"])],
     ),
