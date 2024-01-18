@@ -7,8 +7,7 @@ group_indexes = "123456"
 groups = [
     Group("", layout="monadtall", spawn=terminal),
     Group("", layout="monadtall", spawn=terminal),
-    Group("󰢹", layout="monadtall", spawn=["teamviewer"]),
-    Group("", 
+        Group("", 
           layout="monadtall", 
           spawn=browser, 
           matches=[Match(wm_class=[browser])],
@@ -28,4 +27,5 @@ groups = [
           spawn="spotify", 
           matches=[Match(wm_class=["spotify"])],
     ),
+    Group("", layout="monadtall"),
 ]

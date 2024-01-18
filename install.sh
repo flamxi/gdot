@@ -35,7 +35,7 @@ source scripts/qtile-packages.sh
 # source scripts/pywal.sh
 source scripts/wallpaper.sh
 source scripts/config-folder.sh
-# source scripts/init-pywal.sh
+source scripts/init-pywal.sh
 source scripts/qtile-dotfiles.sh
 # source scripts/bashrc.sh
 source scripts/install-zsh.sh

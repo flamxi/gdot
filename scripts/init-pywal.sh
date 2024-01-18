@@ -2,7 +2,7 @@
 # init pywal with default wallpaper
 # ------------------------------------------------------
 
-_installSymLink wal ~/.config/wal ~/dotfiles/wal/ ~/.config
-wal -i ~/dotfiles/wallpapers/default.jpg
+_installSymLink wal ~/.config/wal $DOTFILES_DIR/wal/ ~/.config
+wal -i ~/wallpaper/default.jpg
 echo "Pywal and templates initiated!"
 echo ""

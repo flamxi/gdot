@@ -1,8 +1,25 @@
 from libqtile import layout
 
-from .colors import catppuccin
+from .colors import *
+
+# --------------------------------------------------------
+# Setup Layout Theme
+# --------------------------------------------------------
+
+layout_theme = {
+    "border_width": 3,
+    "margin": 10,
+    "border_focus": Color2,
+    "border_normal": "FFFFFF",
+    "single_border_width": 3
+}
+
+# --------------------------------------------------------
+# Layouts
+# --------------------------------------------------------
 
 layouts = [
-    layout.MonadTall(border_focus=catppuccin["yellow"], border_normal=catppuccin["magenta"], margin=3),
-    layout.Max(),
+    layout.Max(**layout_theme),
+    layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
 ]

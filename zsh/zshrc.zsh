@@ -70,3 +70,4 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 source $ZSH_PATH/prompt.sh
+cat ~/.cache/wal/sequences

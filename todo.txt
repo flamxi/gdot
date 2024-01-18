@@ -1,0 +1,2 @@
+/etc/udev/rules.d/backlight.rules script that creates rules to allow user to write to brightness
+

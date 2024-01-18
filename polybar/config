@@ -1,0 +1,414 @@
+;
+; this config is written for an unreleased version (polybar "wip-lemonbar" branch)
+; it might need some tweaking to run on the latest released version... try for yourself
+;
+
+[colors]
+background = #aa000000
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#000}
+primary = ${xrdb:color3:#222}
+secondary = ${xrdb:color7:#222}
+alert = ${xrdb:color3:#222}
+
+
+[bar/top]
+# monitor = eDP-1-1
+override-redirect = true
+width = 100%:-14
+height = 43
+offset-x = 7
+offset-y = 7
+padding = 1
+
+linecolor = ${colors.foreground}
+
+foreground = ${colors.foreground}
+background = ${colors.background}
+
+border-top-size = 1
+border-bottom-size = 1
+border-right-size = 1
+border-left-size = 1
+border-color = ${colors.primary}
+
+separator = "󰇙"
+separator-foreground = ${colors.primary}
+module-margin = 1%
+; font-0 = ypn envypn:size=10;0
+
+font-0 = "JetBrainsMonoNerdFont:style=bold:size=19;3"
+font-1 = "JetBrainsMonoNerdFont:style=bold:size=14;2"
+font-2 = "JetBrainsMonoNerdFont:style=bold:size=11;1"
+
+modules-left = 
+modules-center = xworkspaces
+modules-right = backlight pavolume date power
+
+tray-detached = false
+tray-offset-x = 3
+tray-offset-y = 0
+tray-padding = 5
+tray-scale = 1.0
+tray-position = left
+tray-background = ${colors.background}
+
+[bar/bottom]
+bottom = true
+# monitor = eDP-1-1
+override-redirect = false
+width = 100%:-14
+height = 30
+offset-x = 7
+offset-y = 5
+padding = 1
+
+linecolor = ${colors.foreground}
+
+foreground = ${colors.foreground}
+background = ${colors.background}
+
+# border-top-size = 1
+# border-bottom-size = 1
+# border-right-size = 1
+# border-left-size = 1
+# border-color = ${colors.primary}
+#
+separator = "󰇙"
+separator-foreground = ${colors.primary}
+module-margin = 1%
+; font-0 = ypn envypn:size=10;0
+
+font-0 = "JetBrainsMonoNerdFont:style=bold:size=19;3"
+font-1 = "JetBrainsMonoNerdFont:style=bold:size=14;2"
+font-2 = "JetBrainsMonoNerdFont:style=bold:size=11;1"
+font-3 = "JetBrainsMonoNerdFont:style=bold:size=9;1"
+
+modules-left = title 
+modules-center =
+modules-right = spotify filesystem cpu memory wired wifi battery
+
+
+[module/xworkspaces]
+type = internal/xworkspaces
+icon1=3
+icon-default = ""
+label-active = %name%
+label-active-background = ${colors.primary}
+label-active-padding = 2
+label-active-foreground = ${colors.background}
+
+label-occupied = %name%
+label-occupied-padding = 1
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background= ${colors.background}
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = #878787
+label-empty-background= ${colors.background}
+label-empty-padding = 1
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+use-actual-brightness = true
+poll-interval = 0
+enable-scroll = true
+scroll-interval = 10
+format = <label>
+label = %percentage%%
+format-prefix = "󰃟 "
+format-prefix-foreground = ${colors.secondary}
+format-prefix-font = 2
+label-font = 3
+label-alignment = center
+
+
+[module/pavolume]
+type = custom/script
+tail = true
+label = %output%
+format-prefix = " "
+format-prefix-foreground = ${colors.secondary}
+format-prefix-font = 2
+exec = ~/.config/polybar/scripts/pavolume.sh --listen
+click-right = exec pavucontrol
+click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
+scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
+scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.primary}
+label-font = 3
+label-alignment = center
+
+[module/power]
+type = custom/text
+content = " "
+click-left = ~/.config/qtile/scripts/powermenu.sh
+content-foreground = ${colors.foreground}
+content-background = ${colors.background}
+content-underline = ${colors.primary}
+content-font = 1
+
+[module/wifi]
+type = internal/network
+interface = wlp0s20f3
+interval = 3.0
+interface-type = wireless
+#Connected
+# format-connected-prefix = "󱚽 "
+# format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %essid%
+
+label-connected-font = 3
+label-connected-alignment = center
+format-connected = <ramp-signal> <label-connected>
+format-connected-font = 2
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+
+ramp-signal-0 = 󰤫
+ramp-signal-1 = 󰤯
+ramp-signal-2 = 󰤟
+ramp-signal-3 = 󰤢
+ramp-signal-4 = 󰤥
+ramp-signal-5 = 󰤨
+
+ramp-signal-font = 2
+
+#Disconnected
+label-disconnected = "󰖪"
+format-disconnected = <label-disconnected>
+format-disconnected-foreground = ${colors.foreground}
+format-disconnected-background = ${colors.background}
+
+[module/wired]
+type = internal/network
+interface = enx089204c8a000
+interface-type = ethernet
+#Connected
+format-connected-prefix = "󰈁 "
+format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %local_ip%
+label-connected-font = 3
+label-connected-alignment = center
+format-connected = <label-connected>
+format-connected-font = 1
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+#Disconnected
+format-disconnected-prefix = "󰈂 "
+label-disconnected = %linkspeed%
+format-disconnected = <label-disconnected>
+format-disconnected-foreground = ${colors.foreground}
+format-disconnected-background = ${colors.background}
+
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 1.0
+
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %Y-%m-%d%
+
+; Optional time format
+time = %H:%M
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+format = <label>
+label = %date% %time%
+label-font = 3
+label-alignment = center
+
+[module/title]
+type = internal/xwindow
+
+; Available tags:
+;   <label> (default)
+format = <label>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-font = 3
+; Available tokens:
+;   %title%
+;   %instance% (first part of the WM_CLASS atom, new in version 3.7.0)
+;   %class%    (second part of the WM_CLASS atom, new in version 3.7.0)
+; Default: %title%
+label = %title%
+
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+label-empty = 
+label-empty-foreground = ${colors.foreground}
+
+
+[module/battery]
+;https://github.com/jaagr/polybar/wiki/Module:-battery
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+label-charging =  %percentage%%
+label-charging-font = 3
+format-charging-foreground = ${colors.foreground}
+format-charging-background = ${colors.background}
+format-chaging-underline = #a3c725
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging =  %percentage%%
+label-discharging-font = 3 
+format-discharging-underline = #c7ae25
+format-discharging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.background}
+
+format-full-prefix = "  "
+format-full = <label-full>
+format-full-prefix-foreground = #a3c725
+format-full-underline = #a3c725
+format-full-foreground = ${colors.foreground}
+format-full-background = ${colors.background}
+format-full-font = 2
+label-full = %percentage%%
+
+label-full-font = 3
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = #c7ae25
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = #a3c725
+animation-charging-framerate = 750
+animation-charging-font = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+warn-percentage = 95
+format = <label> <ramp-coreload>
+label =   %percentage%%
+label-font = 3
+label-warn =   %percentage%%
+label-warn-foreground = #ff5555
+; Spacing (number of spaces, pixels, points) between individual per-core ramps
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = #55aa55
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = #deeb34
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = #ebcf34
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = #eba834
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = #eb8634
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = #eb6e34
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = #eb5234
+ramp-coreload-7 = █
+ramp-coreload-7-foreground = #ff5555
+ramp-coreload-font = 3
+
+[module/memory]
+type = internal/memory
+interval = 3
+warn-percentage = 95
+format-prefix = "󰍛 "
+format-prefix-font = 1
+format = <label> <bar-used>
+label = %gb_used%/%gb_free%
+label-font = 4
+label-warn = 󰍛 %gb_used%/%gb_free%
+label-warn-foreground = #ff5555
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 20
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+bar-used-fill-font = 4
+bar-used-empty-font = 4
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+; Default: / (new in version 3.7.0)
+mount-0 = /
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+format-mounted-prefix = " "
+format-mounted-font = 1  
+; Available tags:
+;   <label-mounted> (default)
+;   <bar-free>
+;   <bar-used>
+;   <ramp-capacity>
+format-mounted = <label-mounted>
+
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+
+label-mounted = %percentage_free%%  %free% of %total%
+label-mounted-font = 4
+
+[module/spotify]
+;https://github.com/NicholasFeldman/dotfiles/blob/master/polybar/.config/polybar/spotify.sh
+type = custom/script
+exec = ~/.config/polybar/scripts/spotify.sh
+interval = 1
+
+;format = <label>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 2
+format-underline = #0f0
+format-prefix = "  "
+format-prefix-foreground = #0f0
+label = %output:0:150%
+label-font = 3
+
+
+; vim:ft=dosini
